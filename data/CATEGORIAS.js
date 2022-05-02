@@ -1,0 +1,22 @@
+export const CATEGORIAS = [
+    {
+        id:1, 
+        value:'Mujer', 
+        active:true
+    },
+    {
+        id:2, 
+        value:'Hombre', 
+        active:false
+    },
+    {
+        id:3, 
+        value:'Niño', 
+        active:false
+    },
+    {
+        id:4, 
+        value:'Mas', 
+        active:false
+    },
+]

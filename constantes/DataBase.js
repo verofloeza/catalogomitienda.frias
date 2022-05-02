@@ -1,0 +1,1 @@
+export const URL_API_AUTH = 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithCustomToken?key=AIzaSyBYb-sdFqtJ1HfinQpdTE3UP9AzGouBSlw'
