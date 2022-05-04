@@ -1,9 +1,9 @@
 import { StyleSheet, Text, View } from 'react-native';
 
-import AgregarProductosNavigator from '../productos';
 import { AntDesign } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
 import LoginNavigator from '../login';
+import ProductosNavigator from '../productos';
 import React from 'react';
 import ShopNavigator from '../shop';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -49,7 +49,7 @@ const TabNavigator = () => {
                 />
                 { user !== 'null'
                     ?
-                    <BottomTabs.Screen name='AgregarProductosTab' component={AgregarProductosNavigator}
+                    <BottomTabs.Screen name='ProductosTab' component={ProductosNavigator}
                     options={{
                         
                         tabBarIcon: ({color, focused}) => (

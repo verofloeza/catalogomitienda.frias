@@ -1,14 +1,19 @@
-import AgregarProductosScreen from '../../screen/AgregarProductos';
 import Colors from '../../constantes/Colors';
+import { Ionicons } from '@expo/vector-icons'
+import NuevoProductoScreen from '../../screen/NuevoProducto';
 import { Platform } from 'react-native-web';
+import ProductosScreen from '../../screen/Productos';
 import React from 'react';
+import {
+    TouchableOpacity
+} from 'react-native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 const Stack = createNativeStackNavigator();
 
-const AgregarProductosNavigator =  () => {
+const ProductosNavigator =  ({navigation}) => {
     return  (
-        <Stack.Navigator initialRouteName='AgregarProductos'
+        <Stack.Navigator initialRouteName='Productos'
             screenOptions={{
                 headerStyle: {
                     backgroundColor: Platform.OS === 'android' ? Colors.white : Colors.white
@@ -17,16 +22,30 @@ const AgregarProductosNavigator =  () => {
                 headerTitleStyle: {
                     fontWeight: 'bold',
                 },
-                headerTitleAlign: 'center'
+                headerTitleAlign: 'center',
+                headerRight: () => (
+                    <TouchableOpacity onPress={ () => navigation.navigate('NuevoProducto')}>
+                        <Ionicons 
+                            name="md-add"
+                            size={24}
+                            color={Platform.OS === "android"? 'white' : Colors.primary}    
+                        />
+                    </TouchableOpacity>
+                )
             }}
         >
             <Stack.Screen 
-                name='AgregarProductos'
-                component={AgregarProductosScreen}
-                options={{title: 'Agregar Productos'}}
+                name='Productos'
+                component={ProductosScreen}
+                options={{title: 'Productos'}}
+            />
+            <Stack.Screen 
+                name='NuevoProducto'
+                component={NuevoProductoScreen}
+                options={{title: 'Nuevo Producto'}}
             />
         </Stack.Navigator>
     )
 }
 
-export default AgregarProductosNavigator;
+export default ProductosNavigator;

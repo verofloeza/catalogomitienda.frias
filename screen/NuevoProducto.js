@@ -6,7 +6,7 @@ import {
 import React from 'react';
 import {styles} from '../style';
 
-function AgregarProductosScreen() {
+function NuevoProductoScreen() {
     
   return (
         <View style={styles.container}>
@@ -16,4 +16,4 @@ function AgregarProductosScreen() {
   );
 }
 
-export default AgregarProductosScreen;
+export default NuevoProductoScreen;
