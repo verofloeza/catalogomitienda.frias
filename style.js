@@ -46,8 +46,14 @@ export const styles = StyleSheet.create({
     butonsCarrito:{
         padding: 10,
         borderRadius:10,
-        backgroundColor: Colors.accent,
         textAlign: 'center',
+        margin: 10
+    },
+    accentB:{
+        backgroundColor: Colors.accent,
+    },
+    primaryB:{
+        backgroundColor: Colors.primary,
     },
     textButton:{
         fontSize: 20,

@@ -1,14 +1,14 @@
+import AgregarProductosScreen from '../../screen/AgregarProductos';
 import Colors from '../../constantes/Colors';
-import LoginScreen from '../../screen/LoginScreen';
 import { Platform } from 'react-native-web';
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 const Stack = createNativeStackNavigator();
 
-const LoginNavigator =  () => {
+const AgregarProductosNavigator =  () => {
     return  (
-        <Stack.Navigator initialRouteName='Login'
+        <Stack.Navigator initialRouteName='AgregarProductos'
             screenOptions={{
                 headerStyle: {
                     backgroundColor: Platform.OS === 'android' ? Colors.white : Colors.white
@@ -21,12 +21,12 @@ const LoginNavigator =  () => {
             }}
         >
             <Stack.Screen 
-                name='Login'
-                component={LoginScreen}
-                options={{title: 'Login vendedores'}}
+                name='AgregarProductos'
+                component={AgregarProductosScreen}
+                options={{title: 'Agregar Productos'}}
             />
         </Stack.Navigator>
     )
 }
 
-export default LoginNavigator;
+export default AgregarProductosNavigator;

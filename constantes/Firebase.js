@@ -1,16 +1,13 @@
-import 'io.invertase.firebase.messaging.RNFirebaseMessagingPackage';
-import 'io.invertase.firebase.notifications.RNFirebaseNotificationsPackage';
-
 import Firebase from 'firebase';
 
 let config = {
-    apiKey: "AIzaSyBYb-sdFqtJ1HfinQpdTE3UP9AzGouBSlw",
-    authDomain: "mitienda-reactnative.firebaseapp.com",
-    databaseURL: "https://mitienda-reactnative-default-rtdb.firebaseio.com",
-    projectId: "mitienda-reactnative",
-    storageBucket: "mitienda-reactnative.appspot.com",
-    messagingSenderId: "812189569021",
-    appId: "1:812189569021:web:234f68c8c81a48400cd394"
+  apiKey: "AIzaSyAavgs5WxZuF_ydOdjBKQXZHSdHXwtyvMA",
+  authDomain: "catalogotienda-18825.firebaseapp.com",
+  databaseURL: "https://catalogotienda-18825-default-rtdb.firebaseio.com",
+  projectId: "catalogotienda-18825",
+  storageBucket: "catalogotienda-18825.appspot.com",
+  messagingSenderId: "961724769879",
+  appId: "1:961724769879:web:0bebdacdf4b6f18fc5e512"
   };
 let app = Firebase.initializeApp(config);
 // export const db = app.database();

@@ -1,51 +1,26 @@
 import {
     Image,
+    Modal,
     Text,
     TextInput,
     TouchableOpacity,
     View
 } from 'react-native';
-import React, { useCallback, useState } from 'react';
+import React, { useState } from 'react';
 
-import Registro from '../componentes/Registro';
-import { signin } from '../store/actions/login.action';
+import { signup } from '../store/actions/login.action';
 import {styles} from '../style';
 import { useDispatch } from 'react-redux';
 
-function LoginScreen() {
-    
+function Registro(props) {
+    const { visible, onCancel } = props;
     const dispatch = useDispatch();
     const [ contrasena, setContrasena ] = useState('');
     const [ email, setEmail ] = useState('');
-    const [ modalVisible, setModalVisible] = useState(false);
 
-    const registrar = () =>{
-        setModalVisible(!modalVisible);
+    const subirFire = () =>{
+       dispatch(signup(email, contrasena))
     }
-
-    const loguear = () => {
-        dispatch(signin(email, contrasena));
-    }
-
-    // const loguear = React.useCallback(async() => {
-    //     try {
-    //         await auth.signInWithEmailAndPassword(email, contrasena)  
-    //         setEmail('')
-    //         setContrasena('')
-    //         setError(null)
-    //         //props.history.push('/admin') 
-    //         console.log('LOGUEADO')
-    //     } catch (error) {
-    //         if(error.code === 'auth/user-not-found'){
-    //             setError('Usuario o contraseña incorrecta')
-    //         }
-    //         if(error.code === 'auth/wrong-password'){
-    //             setError('Usuario o contraseña incorrecta')
-    //         }
-    //         console.log(error.code)
-    //         console.log(error.message)
-    //     }
-    // }, [email, contrasena])
 
      const tomarEmail = (textoEmail) => {
          setEmail(textoEmail);
@@ -54,10 +29,12 @@ function LoginScreen() {
      const tomarContrasena = (textoPass) => {
          setContrasena(textoPass)
      }
-     const closeModal = () => {
-        setModalVisible(!modalVisible);
-      }
   return (
+    <Modal
+        animationType="slide"
+        visible={visible}
+        transparent={true}
+    >
         <View style={styles.container}>
             <View style={styles.containerLogin}>  
                 <View style={styles.logoLogin}>
@@ -88,23 +65,23 @@ function LoginScreen() {
                     autoCapitalize='none'
                     onChangeText={tomarContrasena}
                 />
-                <TouchableOpacity onPress={loguear}>
+                <TouchableOpacity onPress={subirFire}>
                     <View style={[styles.butonsCarrito, styles.accentB]}>
-                        <Text style={styles.textButton}>Login</Text>
+                        <Text style={styles.textButton}>Registrarme</Text>
                     </View>
                                 
                 </TouchableOpacity>
-                <TouchableOpacity onPress={registrar}>
+                <TouchableOpacity onPress={onCancel.bind(this)}>
                     <View style={[styles.butonsCarrito, styles.primaryB]}>
-                        <Text style={styles.textButton}>Registrarse</Text>
+                        <Text style={styles.textButton}>Cerrar</Text>
                     </View>
                                 
                 </TouchableOpacity>
             </View>
-            <Registro visible={modalVisible} onCancel={closeModal}/>
         </View>
-
+    </Modal>
+    
   );
 }
 
-export default LoginScreen;
+export default Registro;

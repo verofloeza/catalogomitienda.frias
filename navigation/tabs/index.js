@@ -1,15 +1,21 @@
 import { StyleSheet, Text, View } from 'react-native';
 
+import AgregarProductosNavigator from '../productos';
 import { AntDesign } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
 import LoginNavigator from '../login';
 import React from 'react';
 import ShopNavigator from '../shop';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { useSelector } from 'react-redux';
 
 const BottomTabs = createBottomTabNavigator();
 
 const TabNavigator = () => {
+    const user = useSelector(state => state.auth.user);
+    const token = useSelector(state => state.auth.token);
+    console.log("MainNavigator: " + user);
+    console.log("MainNavigator: " + token);
     return (
         <BottomTabs.Navigator initialRouteName='ShopTab' 
             screenOptions={{
@@ -36,11 +42,27 @@ const TabNavigator = () => {
                     tabBarIcon: ({color, focused}) => (
                         <View style={styles.item}>
                             <AntDesign name="user" size={24} color={color} />
-                            <Text style={{color: color}}>Login</Text>
+                            <Text style={{color: color}}>Vendedores</Text>
                         </View>
                     )
                 }}
                 />
+                { user !== 'null'
+                    ?
+                    <BottomTabs.Screen name='AgregarProductosTab' component={AgregarProductosNavigator}
+                    options={{
+                        
+                        tabBarIcon: ({color, focused}) => (
+                            <View style={styles.item}>
+                                <AntDesign name="tag" size={24} color={color} />
+                                <Text style={{color: color}}>Productos</Text>
+                            </View>
+                        )
+                    }}
+                    />
+                    :
+                    <View></View>
+                }
         </BottomTabs.Navigator>
     )
 }
