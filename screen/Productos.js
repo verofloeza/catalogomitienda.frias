@@ -20,8 +20,7 @@ function ProductosScreen({navigation}) {
          const unsubscribe = navigation.addListener('focus', () => {        
            dispatch(selectProductosVendedor());
          });  
-         return unsubscribe;   
-         console.log(items)   
+         return unsubscribe;      
        }, [navigation]);
 
     const renderProductos = ( {item}) =>(

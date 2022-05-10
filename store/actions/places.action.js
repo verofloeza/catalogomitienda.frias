@@ -66,11 +66,8 @@ export const selectProductosVendedor = () => {
     
             const result = await response.json()
             const items = orderByUserID(result, 'user')
-            console.log(items)
-            dispatch({ 
-                type: SELECT_PRODUCTOS_VENDEDOR, 
-                payload: items
-            })
+            console.log(items) // lo realiza
+            dispatch( {type: SELECT_PRODUCTOS_VENDEDOR }) // no lo realiza
         } catch (error) {
             console.log(error.message)
         }
