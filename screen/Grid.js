@@ -52,7 +52,7 @@ const Grid = ( {navigation}) => {
             <View style={styles.filtros}>
                <Filtros/> 
             </View>
-        <View style={styles.containerList}> 
+            <View style={styles.containerList}> 
                 <FlatList
                     data={categoryProductos}
                     keyExtractor={ item => item.id }

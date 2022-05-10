@@ -4,10 +4,9 @@
     "slug": "catalogomitienda-frias",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/logo-mitienda-96x.png",
     "splash": {
-      "image": "./assets/splash.png",
-      "resizeMode": "contain",
+      "image": "./assets/logo-mitienda-300px.png",
       "backgroundColor": "#ffffff"
     },
     "updates": {

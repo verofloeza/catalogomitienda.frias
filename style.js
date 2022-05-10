@@ -12,6 +12,10 @@ export const styles = StyleSheet.create({
         justifyContent: 'center',
         flexDirection: 'column', 
       },
+      scroll: {
+        marginTop:50,
+        backgroundColor: '#fff',
+      },
       //login
     logoLogin:{
         flex: 1,
@@ -44,7 +48,10 @@ export const styles = StyleSheet.create({
         fontFamily: 'MontserratBold'
     },
     butonsCarrito:{
-        padding: 10,
+        paddingTop: 10,
+        paddingBottom: 10,
+        paddingLeft:20,
+        paddingRight: 20,
         borderRadius:10,
         textAlign: 'center',
         margin: 10
@@ -144,5 +151,37 @@ export const styles = StyleSheet.create({
         color: Colors.accent,
         fontFamily: 'RobotoBold'
     },
-    
+    filas:{
+        flex: 1,
+        width: '100%',
+        justifyContent: 'center',
+        alignContent: 'center',
+        flexDirection: 'row', 
+        borderBottomColor:Colors.grey,
+        borderBottomWidth:2,
+    },
+    label:{
+        flex:0.3,
+        padding: 10,
+        marginBottom:25,
+        fontSize: 15,
+        fontFamily: 'RobotoBold',
+        color: Colors.primary
+    },
+    inputLabel:{
+        flex:0.7
+    },
+    preview: {
+        width: '100%',
+        height: 200,
+        marginBottom: 10,
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderColor: Colors.primary,
+        borderWidth: 1,
+    },
+    image: {
+        width: '100%',
+        height: '100%'
+    }
 });

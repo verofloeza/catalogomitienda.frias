@@ -1,5 +1,6 @@
 import {
     Image,
+    Linking,
     ScrollView,
     StyleSheet,
     Text,
@@ -28,7 +29,7 @@ export default function ProductDetails() {
                 
             </View>
             <View style={styles.buttons}>
-                <TouchableOpacity>
+                <TouchableOpacity onPress={() => { Linking.openURL('http://api.whatsapp.com/send?phone=5491123290534' )}}>
                     <View style={styles.butonsCarrito}>
                         <Ionicons name="md-cart" size={32} color={Colors.white} style={styles.buttonCart}>
                             <Text style={styles.textButton}> Contactar al vendedor</Text>

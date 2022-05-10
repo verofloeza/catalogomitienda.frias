@@ -1,5 +1,6 @@
 import {
     Image,
+    ScrollView,
     Text,
     TextInput,
     TouchableOpacity,
@@ -58,7 +59,8 @@ function LoginScreen() {
         setModalVisible(!modalVisible);
       }
   return (
-        <View style={styles.container}>
+      <ScrollView>
+          <View style={styles.container}>
             <View style={styles.containerLogin}>  
                 <View style={styles.logoLogin}>
                     <Image 
@@ -103,7 +105,8 @@ function LoginScreen() {
             </View>
             <Registro visible={modalVisible} onCancel={closeModal}/>
         </View>
-
+      </ScrollView>
+        
   );
 }
 

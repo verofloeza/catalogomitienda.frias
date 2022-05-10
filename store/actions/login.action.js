@@ -35,7 +35,7 @@ export const signup = (email, password) => {
             user: data.email
         })
 
-        const response2 = await fetch(`${URL_DATABASE}/usuarios.json`, {
+        const response2 = await fetch(`${URL_DATABASE}.json`, {
             method: 'POST',
             headers: { 
                 'Content-Type': 'application/json'

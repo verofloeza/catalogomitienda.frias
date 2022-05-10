@@ -1,6 +1,6 @@
 import Colors from '../../constantes/Colors';
 import { Ionicons } from '@expo/vector-icons'
-import NuevoProductoScreen from '../../screen/NuevoProducto';
+import NuevoProducto from '../../screen/NuevoProducto';
 import { Platform } from 'react-native-web';
 import ProductosScreen from '../../screen/Productos';
 import React from 'react';
@@ -41,7 +41,7 @@ const ProductosNavigator =  ({navigation}) => {
             />
             <Stack.Screen 
                 name='NuevoProducto'
-                component={NuevoProductoScreen}
+                component={NuevoProducto}
                 options={{title: 'Nuevo Producto'}}
             />
         </Stack.Navigator>
