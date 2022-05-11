@@ -2,14 +2,14 @@ import { StyleSheet, Text, View } from 'react-native';
 
 import { AntDesign } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
-import LoginNavigator from '../login';
+import ProductosNavigator from '../productos';
 import React from 'react';
 import ShopNavigator from '../shop';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 const BottomTabs = createBottomTabNavigator();
 
-const TabNavigator = () => {
+const TabLoginNavigator = () => {
     return (
         
         <BottomTabs.Navigator initialRouteName='ShopTab' 
@@ -31,17 +31,17 @@ const TabNavigator = () => {
                     )
                 }}
             />
-            <BottomTabs.Screen name='LoginTab' component={LoginNavigator}
-                options={{
-                    
-                    tabBarIcon: ({color, focused}) => (
-                        <View style={styles.item}>
-                            <AntDesign name="user" size={24} color={color} />
-                            <Text style={{color: color}}>Vendedores</Text>
-                        </View>
-                    )
-                }}
-                />
+                    <BottomTabs.Screen name='ProductosTab' component={ProductosNavigator}
+                    options={{
+                        
+                        tabBarIcon: ({color, focused}) => (
+                            <View style={styles.item}>
+                                <AntDesign name="tag" size={24} color={color} />
+                                <Text style={{color: color}}>Productos</Text>
+                            </View>
+                        )
+                    }}
+                    />
                     
         </BottomTabs.Navigator>
     )
@@ -66,4 +66,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default TabNavigator;
+export default TabLoginNavigator;
