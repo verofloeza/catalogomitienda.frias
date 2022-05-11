@@ -2,9 +2,9 @@ import { ADD_PLACE, SELECT_PRODUCTOS_VENDEDOR } from '../actions/places.action';
 
 import Place from '../../models/Place';
 
-const initialState = {
+const initialState = [{
     places: []
-}
+}]
 
 const PlaceReducers = (state = initialState, action) => {
     switch(action.type) {
@@ -18,7 +18,7 @@ const PlaceReducers = (state = initialState, action) => {
         case SELECT_PRODUCTOS_VENDEDOR:
             return {
                     ...state,
-                    places: action.payload
+                    places: action.payload // action.payload trae el array pero no lo coloca en el places
             }
         default:
             return state

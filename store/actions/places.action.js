@@ -42,7 +42,7 @@ export const addPlace = (title, marca, precio, descripcion, categoria, image) =>
         })
         await response2.json()
 
-        dispatch({type: ADD_PLACE, payload: {title, marca, precio, descripcion, categoria, image: Path}});
+        dispatch({type: ADD_PLACE, payload: {title: title, marca: marca, precio:precio, descripcion:descripcion, categoria: categoria, image: Path}});
     }
 
     
