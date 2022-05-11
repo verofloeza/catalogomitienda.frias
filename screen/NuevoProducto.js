@@ -33,7 +33,6 @@ const NuevoProducto = ({navigation}) => {
   const handleOnChange = cat => setSelectCategoria(cat);
   
    const handlerSave = () => {
-     console.log("Add Producto");
      dispatch(addPlace(title, marca, precio, descripcion, selectCategoria, image));
      navigation.navigate('Productos');
  }

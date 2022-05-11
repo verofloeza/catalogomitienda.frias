@@ -12,8 +12,9 @@ const PlaceReducers = (state = initialState, action) => {
             const newPlace = new Place(Date.now(), action.payload.title, action.payload.marca, action.payload.precio,action.payload.descripcion, action.payload.categoria, action.payload.image);
             return {
                 ...state,
-                places: state.places.concat(newPlace),
+                places: state.places.concat(newPlace)
             }
+            
         case SELECT_PRODUCTOS_VENDEDOR:
             return {
                     ...state,
