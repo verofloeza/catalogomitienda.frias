@@ -3,8 +3,8 @@ import { ADD_PLACE, SELECT_PRODUCTOS_VENDEDOR } from '../actions/places.action';
 import Place from '../../models/Place';
 
 const initialState = [{
-    places: []
-}]
+    productos: []
+}];
 
 const PlaceReducers = (state = initialState, action) => {
     switch(action.type) {
@@ -12,14 +12,14 @@ const PlaceReducers = (state = initialState, action) => {
             const newPlace = new Place(Date.now(), action.payload.title, action.payload.marca, action.payload.precio,action.payload.descripcion, action.payload.categoria, action.payload.image);
             return {
                 ...state,
-                places: state.places.concat(newPlace)
+                productos: state.places.concat(newPlace)
             }
             
         case SELECT_PRODUCTOS_VENDEDOR:
             console.log(action.payload)
             return {
                     ...state,
-                    places: action.payload // action.payload trae el array pero no lo coloca en el places
+                    productos: action.payload // action.payload trae el array pero no lo coloca en el places
             }
         default:
             return state

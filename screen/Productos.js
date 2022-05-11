@@ -14,7 +14,7 @@ import {styles} from '../style';
 
 function ProductosScreen({navigation}) {
   const dispatch = useDispatch();
-  const items = useSelector(state => state.places);
+  const items = useSelector(state => state.productos);
 
   useEffect(()=>{
          const unsubscribe = navigation.addListener('focus', () => {        

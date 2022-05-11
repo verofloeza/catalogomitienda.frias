@@ -12,7 +12,7 @@ const BottomTabs = createBottomTabNavigator();
 const TabLoginNavigator = () => {
     return (
         
-        <BottomTabs.Navigator initialRouteName='ShopTab' 
+        <BottomTabs.Navigator initialRouteName='ProductosTab' 
             screenOptions={{
                 headerShown: false,
                 tabBarShowLabel: false, 
