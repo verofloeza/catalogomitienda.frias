@@ -28,26 +28,6 @@ function LoginScreen() {
         dispatch(signin(email, contrasena));
     }
 
-    // const loguear = React.useCallback(async() => {
-    //     try {
-    //         await auth.signInWithEmailAndPassword(email, contrasena)  
-    //         setEmail('')
-    //         setContrasena('')
-    //         setError(null)
-    //         //props.history.push('/admin') 
-    //         console.log('LOGUEADO')
-    //     } catch (error) {
-    //         if(error.code === 'auth/user-not-found'){
-    //             setError('Usuario o contraseña incorrecta')
-    //         }
-    //         if(error.code === 'auth/wrong-password'){
-    //             setError('Usuario o contraseña incorrecta')
-    //         }
-    //         console.log(error.code)
-    //         console.log(error.message)
-    //     }
-    // }, [email, contrasena])
-
      const tomarEmail = (textoEmail) => {
          setEmail(textoEmail);
         
@@ -59,8 +39,8 @@ function LoginScreen() {
         setModalVisible(!modalVisible);
       }
   return (
-      <ScrollView>
-          <View style={styles.container}>
+      <ScrollView style={{backgroundColor: '#fff'}}>
+          <View style={[styles.container, { minHeight: '100%', height:720}]}>
             <View style={styles.containerLogin}>  
                 <View style={styles.logoLogin}>
                     <Image 
