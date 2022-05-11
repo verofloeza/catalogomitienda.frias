@@ -14,8 +14,8 @@ const BottomTabs = createBottomTabNavigator();
 const TabNavigator = () => {
     const user = useSelector(state => state.auth.user);
     const token = useSelector(state => state.auth.token);
-    console.log("MainNavigator: " + user);
-    console.log("MainNavigator: " + token);
+    console.log("Usuario: " + user);
+    console.log("Token: " + token);
     return (
         <BottomTabs.Navigator initialRouteName='ShopTab' 
             screenOptions={{
