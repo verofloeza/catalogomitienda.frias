@@ -23,7 +23,7 @@ function ProductosScreen({navigation}) {
          });  
          return unsubscribe;       
          
-       }, [navigation]);
+       }, []);
 
     const renderProductos = ( {item}) =>(
         <Card>

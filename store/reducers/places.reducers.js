@@ -16,6 +16,7 @@ const PlaceReducers = (state = initialState, action) => {
             }
             
         case SELECT_PRODUCTOS_VENDEDOR:
+            console.log(action.payload)
             return {
                     ...state,
                     places: action.payload // action.payload trae el array pero no lo coloca en el places
