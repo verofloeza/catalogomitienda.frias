@@ -5,7 +5,7 @@ import {
   TouchableOpacity,
   View
 } from 'react-native';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import Card from '../componentes/Card';
@@ -19,8 +19,10 @@ function ProductosScreen({navigation}) {
   useEffect(()=>{
          const unsubscribe = navigation.addListener('focus', () => {        
            dispatch(selectProductosVendedor());
+           console.log(items) // no me actualiza los items
          });  
-         return unsubscribe;      
+         return unsubscribe;       
+         
        }, [navigation]);
 
     const renderProductos = ( {item}) =>(

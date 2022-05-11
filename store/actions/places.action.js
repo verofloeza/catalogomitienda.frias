@@ -14,15 +14,8 @@ const orderByUserID = (data, user) => {
 
 export const addPlace = (title, marca, precio, descripcion, categoria, image) => {
     return async dispatch => {
-        console.log("Dispatching...");
-        
         const fileName = image.split('/').pop();
         const Path = FileSystem.documentDirectory + fileName; 
-        console.log('------------------------------------');
-        console.log(image);
-        console.log(fileName);
-        console.log(Path);        
-        console.log('------------------------------------');
         try {
             await FileSystem.moveAsync({
                 from: image,
@@ -66,8 +59,7 @@ export const selectProductosVendedor = () => {
     
             const result = await response.json()
             const items = orderByUserID(result, 'user')
-            console.log(items) // lo realiza
-            dispatch( {type: SELECT_PRODUCTOS_VENDEDOR }) // no lo realiza
+            dispatch({type: SELECT_PRODUCTOS_VENDEDOR, payload: items});
         } catch (error) {
             console.log(error.message)
         }
