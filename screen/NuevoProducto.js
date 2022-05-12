@@ -23,6 +23,7 @@ const NuevoProducto = ({navigation}) => {
   const [ marca, setMarca] = useState('');
   const [ precio, setPrecio ] = useState(0);
   const [ descripcion, setDescripcion ] = useState('');
+  const user = useSelector(state => state.auth.user)
 
   const handlerTitle = text => setTitle(text);
   const handlerMarca = text => setMarca(text);
@@ -33,7 +34,7 @@ const NuevoProducto = ({navigation}) => {
   const handleOnChange = cat => setSelectCategoria(cat);
   
    const handlerSave = () => {
-     dispatch(addPlace(title, marca, precio, descripcion, selectCategoria, image));
+     dispatch(addPlace(title, marca, precio, descripcion, selectCategoria, image, user));
      navigation.navigate('Productos');
  }
   return (

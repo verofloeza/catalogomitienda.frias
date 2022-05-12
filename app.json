@@ -3,6 +3,7 @@
     "name": "catalogomitienda.frias",
     "slug": "catalogomitienda-frias",
     "version": "1.0.0",
+    "plataforms": ["ios", "android"],
     "orientation": "portrait",
     "icon": "./assets/logo-mitienda-96x.png",
     "splash": {

@@ -40,7 +40,7 @@ function LoginScreen() {
       }
   return (
       <ScrollView style={{backgroundColor: '#fff'}}>
-          <View style={[styles.container, { minHeight: '100%', height:700}]}>
+          <View style={[styles.container, {  height:700}]}>
             <View style={styles.containerLogin}>  
                 <View style={styles.logoLogin}>
                     <Image 

@@ -14,7 +14,7 @@ import {styles} from '../style';
 
 function ProductosScreen({navigation}) {
   const dispatch = useDispatch();
-  const items = useSelector(state => state.productos);
+  const items = useSelector(state => state.productosVendedor.productosVendedor);
 
   useEffect(()=>{
          const unsubscribe = navigation.addListener('focus', () => {        
@@ -27,7 +27,7 @@ function ProductosScreen({navigation}) {
 
     const renderProductos = ( {item}) =>(
         <Card>
-            <TouchableOpacity onPress={()=>console.log(item.title)}>
+          <TouchableOpacity onPress={()=>console.log(item.title)}>
                 <Image 
                     source={{isStatic:true, uri: item.image,}}
                     style={styles.fotoProducto} 
