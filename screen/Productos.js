@@ -19,7 +19,6 @@ function ProductosScreen({navigation}) {
   useEffect(()=>{
          const unsubscribe = navigation.addListener('focus', () => {        
            dispatch(selectProductosVendedor());
-           console.log(items) // no me actualiza los items
          });  
          return unsubscribe;       
          
