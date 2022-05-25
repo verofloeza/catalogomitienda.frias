@@ -3,7 +3,7 @@ import { URL_API_AUTH, URL_API_AUTH_SIGNIN, URL_DATABASE } from '../../constante
 export const SIGNUP = 'SIGNUP';
 export const SIGNIN = 'SIGNIN';
 
-export const signup = (email, password) => {
+export const signup = (nombre, whastapp, empresa, email, password) => {
     return async dispatch => {
         const response = await fetch(URL_API_AUTH, {
             method: 'POST',
@@ -41,7 +41,10 @@ export const signup = (email, password) => {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({ 
-                usuario: email, 
+                nombre: nombre,
+                empresa: empresa,
+                whastapp: whastapp,
+                email: email, 
                 constrasena: password, 
                 token:data.idToken
             })

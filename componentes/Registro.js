@@ -17,18 +17,19 @@ function Registro(props) {
     const dispatch = useDispatch();
     const [ contrasena, setContrasena ] = useState('');
     const [ email, setEmail ] = useState('');
+    const [ nombre, setNombre ] = useState('');
+    const [ whastapp, setWhastapp ] = useState('');
+    const [ empresa, setEmpresa ] = useState('');
 
     const subirFire = () =>{
-       dispatch(signup(email, contrasena))
+       dispatch(signup(nombre, whastapp, empresa, email, contrasena))
     }
-
-     const tomarEmail = (textoEmail) => {
-         setEmail(textoEmail);
-        
-     }
-     const tomarContrasena = (textoPass) => {
-         setContrasena(textoPass)
-     }
+    const tomarNombre = (textoNombre) => setNombre(textoNombre);
+    const tomarWhastapp = (textoWhastapp) => setWhastapp(textoWhastapp);
+    const tomarEmpresa = (textoEmpresa) => setEmpresa(textoEmpresa);
+     const tomarEmail = (textoEmail) => setEmail(textoEmail);
+     const tomarContrasena = (textoPass) => setContrasena(textoPass)
+     
   return (
     <Modal
         animationType="slide"
@@ -43,6 +44,33 @@ function Registro(props) {
                         style={styles.logo} 
                     />
                 </View>
+                <TextInput 
+                    id='nombre'
+                    title='Nombre' 
+                    placeholder='Nombre' 
+                    style={styles.input}
+                    required
+                    autoCapitalize='none'
+                    onChangeText={tomarNombre}
+                />
+                <TextInput 
+                    id='empresa'
+                    title='Empresa' 
+                    placeholder='Empresa' 
+                    style={styles.input}
+                    required
+                    autoCapitalize='none'
+                    onChangeText={tomarEmpresa}
+                />
+                <TextInput 
+                    id='whastapp'
+                    title='Whastapp' 
+                    placeholder='Whastapp' 
+                    style={styles.input}
+                    required
+                    autoCapitalize='none'
+                    onChangeText={tomarWhastapp}
+                />
                 <TextInput 
                     id='email'
                     title='Email' 
@@ -73,7 +101,7 @@ function Registro(props) {
                 </TouchableOpacity>
                 <TouchableOpacity onPress={onCancel.bind(this)}>
                     <View style={[styles.butonsCarrito, styles.primaryB]}>
-                        <Text style={styles.textButton}>Cerrar</Text>
+                        <Text style={styles.textButton}>Volver al login</Text>
                     </View>
                                 
                 </TouchableOpacity>

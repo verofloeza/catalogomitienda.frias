@@ -179,9 +179,11 @@ export const styles = StyleSheet.create({
         alignItems: 'center',
         borderColor: Colors.primary,
         borderWidth: 1,
+        borderRadius: 20,
     },
     image: {
         width: '100%',
-        height: '100%'
+        height: '100%',
+        borderRadius: 20,
     }
 });

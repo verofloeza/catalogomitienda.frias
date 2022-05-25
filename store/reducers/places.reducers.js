@@ -18,16 +18,17 @@ const PlaceReducers = (state = initialState, action) => {
         case SELECT_PRODUCTOS_VENDEDOR:
             return {
                     ...state,
-                    productosVendedor: action.productos.map( item => new Place(
-                        item.id.toString(),
-                        item.title,
-                        item.image,
-                        item.marca,
-                        item.precio,
-                        item.descripcion,
-                        item.categoria,
-                        item.usuario
-                    ))
+                    productosVendedor: action.payload
+                    // productosVendedor: action.productos.map( item => new Place(
+                    //     item.id.toString(),
+                    //     item.title,
+                    //     item.image,
+                    //     item.marca,
+                    //     item.precio,
+                    //     item.descripcion,
+                    //     item.categoria,
+                    //     item.usuario
+                    // ))
             }
         default:
             return state

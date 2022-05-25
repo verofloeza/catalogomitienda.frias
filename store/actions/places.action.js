@@ -1,7 +1,5 @@
 import * as FileSystem from 'expo-file-system';
 
-import { deleteProductos, fetchProductos, insertProductos } from '../../db';
-
 import { URL_DB_PRODUCTOS } from '../../constantes/DataBase';
 
 export const ADD_PLACE = 'ADD_PLACE';
@@ -30,10 +28,6 @@ export const addPlace = (title, marca, precio, descripcion, categoria, image, us
             throw err;
         }
 
-        const result = await insertProductos(title, Path, marca, precio, descripcion, categoria, user);
-        console.log("Result database: ");
-        console.log(result);
-
         const response2 = await fetch(`${URL_DB_PRODUCTOS}.json`, {
             method: 'POST',
             headers: { 
@@ -56,6 +50,7 @@ export const addPlace = (title, marca, precio, descripcion, categoria, image, us
 
     
 }
+
 export const selectProductosVendedor = () => {
     return async dispatch => {
         try {  
@@ -66,15 +61,15 @@ export const selectProductosVendedor = () => {
                  }
              })
     
-            //  const result = await response.json()
-            //  const items = orderByUserID(result, 'user')
-            //  dispatch({type: SELECT_PRODUCTOS_VENDEDOR, payload: items});
-             const result = await fetchProductos();
-             console.log(result);
-             dispatch({type: SELECT_PRODUCTOS_VENDEDOR, productos: result.rows._array });
+              const result = await response.json()
+              const items = orderByUserID(result, 'user')
+              dispatch({type: SELECT_PRODUCTOS_VENDEDOR, payload: items});
+            //  const result = await fetchProductos();
+            //  console.log(result);
+            //  dispatch({type: SELECT_PRODUCTOS_VENDEDOR, productos: result.rows._array });
         } catch (err) {
-            //console.log(error.message)
-            throw err;
+            console.log(err.message)
+            //throw err;
         }
     }
 }

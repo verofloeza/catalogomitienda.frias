@@ -2,6 +2,7 @@ import { StyleSheet, Text, View } from 'react-native';
 
 import { AntDesign } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
+import PerfilNavigator from '../perfil';
 import ProductosNavigator from '../productos';
 import React from 'react';
 import ShopNavigator from '../shop';
@@ -37,7 +38,18 @@ const TabLoginNavigator = () => {
                         tabBarIcon: ({color, focused}) => (
                             <View style={styles.item}>
                                 <AntDesign name="tag" size={24} color={color} />
-                                <Text style={{color: color}}>Productos</Text>
+                                <Text style={{color: color}}>Mis Productos</Text>
+                            </View>
+                        )
+                    }}
+                    />
+                    <BottomTabs.Screen name='PerfilTab' component={PerfilNavigator}
+                    options={{
+                        
+                        tabBarIcon: ({color, focused}) => (
+                            <View style={styles.item}>
+                                <AntDesign name="idcard" size={24} color={color} />
+                                <Text style={{color: color}}>Mi perfil</Text>
                             </View>
                         )
                     }}
