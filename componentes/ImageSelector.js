@@ -1,5 +1,5 @@
 import * as ImagePicker from 'expo-image-picker';
-import * as firebase from "firebase";
+import * as firebase from "firebase/app";
 
 import { ActivityIndicator, Alert, Image, Text, TouchableOpacity, View } from 'react-native';
 import React, { useState } from 'react';
