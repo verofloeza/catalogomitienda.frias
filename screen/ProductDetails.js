@@ -18,11 +18,11 @@ export default function ProductDetails() {
     return (
         <ScrollView style={styles.containerGrid}>
             <Image 
-                source={require('../assets/sin-imagen.jpg')}
+                source={{isStatic:true, uri: item.image,}}
                 style={styles.fotoProducto} 
             />
             <View style={styles.containerText}>
-                <Text style={styles.tituloProducto}>{item.value}</Text>
+                <Text style={styles.tituloProducto}>{item.title}</Text>
                 <Text style={styles.marca}>{item.marca}</Text>
                 <Text style={styles.precio}>${item.precio}</Text>
                 <Text style={styles.descripcion}>{item.descripcion}</Text>

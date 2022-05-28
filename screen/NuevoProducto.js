@@ -105,7 +105,7 @@ const NuevoProducto = ({navigation}) => {
             </View>
             <View style={styles.filas}>
               <Text style={styles.label}>Imágen</Text>
-              <ImageSelector onImage={handlerImageChange}/>
+              <ImageSelector onImage={handlerImageChange} nombre={title} tipo='productos'/>
             </View> 
             <View style={styles.filas}>
               <TouchableOpacity onPress={handlerSave}>

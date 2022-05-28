@@ -7,8 +7,12 @@
     "orientation": "portrait",
     "icon": "./assets/logo-mitienda-96x.png",
     "splash": {
-      "image": "./assets/logo-mitienda-300px.png",
-      "resizeMode": "native",
+      "ldpi": "./assets/logo-mitienda-300px.png",
+        "mdpi": "./assets/logo-mitienda-300px.png",
+        "hdpi": "./assets/logo-mitienda-300px.png",
+        "xhdpi": "./assets/logo-mitienda-300px.png",
+        "xxhdpi": "./assets/logo-mitienda-300px.png",
+        "xxxhdpi": "./assets/logo-mitienda-300px.png",
       "backgroundColor": "#ffffff"
     },
     "updates": {

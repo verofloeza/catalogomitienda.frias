@@ -3,22 +3,17 @@ import * as firebase from "firebase/app";
 
 import { ActivityIndicator, Alert, Image, Text, TouchableOpacity, View } from 'react-native';
 import React, { useState } from 'react';
+import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
 
 import { firebaseConfig } from '../constantes/Firebase';
-import { initializeApp } from 'firebase/app';
 import {styles} from '../style';
 
-//import firebase from 'firebase/compat/app'
-
-
-
+firebase.initializeApp(firebaseConfig);
 
 const ImageSelector = (props) => {
-
-        initializeApp(firebaseConfig)
-    
-
-    const [ pickerURI, setPickerURI ] = useState();
+    const { nombre, tipo, image } = props;
+    const storage = getStorage();
+    const [ pickerURI, setPickerURI ] = useState(image);
     const [uploading, setUploading] = useState(false);
 
     const verifyPermissions = async () => {
@@ -53,7 +48,7 @@ const ImageSelector = (props) => {
 
         const image = await ImagePicker.launchCameraAsync({
             allowsEditing: true,
-            aspect: [9,16],
+            aspect: tipo === 'perfil' ? [4,3] : [9,16],
             quality: 0.8
         })
 
@@ -86,6 +81,7 @@ const ImageSelector = (props) => {
         props.onImage(image.uri);
     }
     const uploadImage = async() => {
+        
         const blob = await new Promise((resolve, reject) => {
             const xhr = new XMLHttpRequest();
             xhr.onload = function() {
@@ -98,28 +94,28 @@ const ImageSelector = (props) => {
             xhr.open('GET', pickerURI, true);
             xhr.send(null);
           });
-      
-        const ref = firebase.storage().ref().child(new Date().toISOString());
-        const snapshot = ref.put(blob)
-      
-        snapshot.on(firebase.storage.TaskEvent.STATE_CHANGED, ()=>{
-            setUploading(true)
-        },
-        (error)=>{
-            setUploading(false)
-            console.log(error)
-            blob.close()
-      
-        },
-        ()=>{
-            snapshot.snapshot.ref.getDownloadURL().then((url)=>{
-                setUploading(false)
-                console.log(url)
-                blob.close()
-                return url
+          
+
+        const storageRef = ref(storage, `/${nombre}`);
+          
+        getDownloadURL(storageRef).then((url) => {
+                console.log(url);
+                setPickerURI(url)
+                props.onImage(url);
             })
-        }
-        )
+
+         uploadBytes(storageRef, blob).then((url) => {
+            
+             console.log('Uploaded a blob or file!');
+            
+           });
+
+        blob.close();
+
+       
+
+      
+        
       }
     return (
         <View style={styles.container}>

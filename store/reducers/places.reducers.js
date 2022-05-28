@@ -1,9 +1,11 @@
-import { ADD_PLACE, SELECT_PRODUCTOS_VENDEDOR } from '../actions/places.action';
+import { ADD_PLACE, LIST_PRODUCTOS, SELECT_PRODUCTOS_VENDEDOR } from '../actions/places.action';
 
 import Place from '../../models/Place';
 
 const initialState = [{
-    productosVendedor: []
+    productosVendedor: [],
+    listProductos: [],
+    selected: null
 }];
 
 const PlaceReducers = (state = initialState, action) => {
@@ -18,17 +20,12 @@ const PlaceReducers = (state = initialState, action) => {
         case SELECT_PRODUCTOS_VENDEDOR:
             return {
                     ...state,
-                    productosVendedor: action.payload
-                    // productosVendedor: action.productos.map( item => new Place(
-                    //     item.id.toString(),
-                    //     item.title,
-                    //     item.image,
-                    //     item.marca,
-                    //     item.precio,
-                    //     item.descripcion,
-                    //     item.categoria,
-                    //     item.usuario
-                    // ))
+                    productosVendedor: action.payload.filter( item => item.usuario === action.user)
+            }
+        case LIST_PRODUCTOS:
+            return{
+                ...state,
+                listProductos: action.payload.filter( item => item.categoria === action.categoriaID)
             }
         default:
             return state

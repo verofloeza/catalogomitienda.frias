@@ -4,7 +4,7 @@ import { URL_DB_PRODUCTOS } from '../../constantes/DataBase';
 
 export const ADD_PLACE = 'ADD_PLACE';
 export const SELECT_PRODUCTOS_VENDEDOR = 'SELECT_PRODUCTOS_VENDEDOR';
-
+export const LIST_PRODUCTOS = 'LIST_PRODUCTOS';
 
 
  const orderByUserID = (data, user) => {
@@ -51,7 +51,7 @@ export const addPlace = (title, marca, precio, descripcion, categoria, image, us
     
 }
 
-export const selectProductosVendedor = () => {
+export const selectProductosVendedor = (user) => {
     return async dispatch => {
         try {  
              const response = await fetch( `${URL_DB_PRODUCTOS}.json` , {
@@ -63,13 +63,32 @@ export const selectProductosVendedor = () => {
     
               const result = await response.json()
               const items = orderByUserID(result, 'user')
-              dispatch({type: SELECT_PRODUCTOS_VENDEDOR, payload: items});
+              dispatch({type: SELECT_PRODUCTOS_VENDEDOR, payload: items, user:user});
             //  const result = await fetchProductos();
             //  console.log(result);
             //  dispatch({type: SELECT_PRODUCTOS_VENDEDOR, productos: result.rows._array });
         } catch (err) {
             console.log(err.message)
             //throw err;
+        }
+    }
+}
+export const listProductos = (categoria) => {
+    return async dispatch => {
+        try {  
+             const response = await fetch( `${URL_DB_PRODUCTOS}.json` , {
+                 method: 'GET',
+                 headers: { 
+                     'Content-Type': 'application/json'
+                 }
+             })
+    
+              const result = await response.json()
+              const items = orderByUserID(result, 'user')
+              dispatch({type: SELECT_PRODUCTOS_VENDEDOR, payload: items, categoriaID: categoria,});
+           
+        } catch (err) {
+            console.log(err.message)
         }
     }
 }

@@ -17,22 +17,23 @@ function ProductosScreen({navigation}) {
   const dispatch = useDispatch();
   const items = useSelector(state => state.productosVendedor.productosVendedor);
   const categorias = useSelector(state => state.categorias.listCategorias);
+  const user = useSelector(state => state.auth.user);
 
   const handlerDetalles = (item)=>{
-    // dispatch(selectProductos(item.id));
-    // let nombreCategoria;
-    // categorias.filter( categoria => {
-    //     if( categoria.id === item.categoria){
-    //         nombreCategoria = categoria.value
-    //     }
-    // })
-    // navigation.navigate('Detalles', { categoria: nombreCategoria });
-    console.log(item)
+     dispatch(selectProductos(item.id));
+     let nombreCategoria;
+     categorias.filter( categoria => {
+         if( categoria.id === item.categoria){
+             nombreCategoria = categoria.value
+         }
+     })
+     navigation.navigate('Details', { categoria: nombreCategoria });
+    //console.log(item)
 }
 
   useEffect(()=>{
          const unsubscribe = navigation.addListener('focus', () => {        
-           dispatch(selectProductosVendedor());
+           dispatch(selectProductosVendedor(user));
          });  
          return unsubscribe;       
          

@@ -3,17 +3,17 @@ import { SELECT_CATEGORY } from "../actions/categoria.action";
 
 const initialState ={
     listCategorias: CATEGORIAS,
-    selected: 1
+    selected: 'Mujer'
 }
 
 const CategoriaReducers = ( state = initialState, action) => {
     switch (action.type){
         case SELECT_CATEGORY:
-            const indexCategoria = state.listCategorias.findIndex( cat => cat.id === action.categoriaID );
+            const indexCategoria = state.listCategorias.findIndex( cat => cat.nombre === action.categoriaID );
             if(indexCategoria === -1) {return state};
             return {...state, selected: state.listCategorias[indexCategoria]};
         default:
-            return {...state, selected: 1};
+            return {...state, selected: 'Mujer'};
             //return state;
     }
 

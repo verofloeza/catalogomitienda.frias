@@ -28,7 +28,7 @@ const Grid = ( {navigation}) => {
         dispatch(selectProductos(item.id));
         let nombreCategoria;
         categorias.filter( categoria => {
-            if( categoria.id === item.categoria){
+            if( categoria.value === item.categoria){
                 nombreCategoria = categoria.value
             }
         })
@@ -38,10 +38,10 @@ const Grid = ( {navigation}) => {
         <Card>
             <TouchableOpacity onPress={()=>handlerDetalles(item)}>
                 <Image 
-                    source={require('../assets/sin-imagen.jpg')}
+                    source={{isStatic:true, uri: item.image,}}
                     style={styles.fotoProducto} 
                 />
-                <Text style={styles.title}>{item.value}</Text>
+                <Text style={styles.title}>{item.title}</Text>
                 <Text style={styles.marca}>${item.precio}</Text>
             </TouchableOpacity>
         </Card>

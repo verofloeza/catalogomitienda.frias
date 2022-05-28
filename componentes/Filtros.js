@@ -19,7 +19,7 @@ export default function Filtros( props){
         categorias.map( 
             itemCategoria => 
               {
-                  itemCategoria.id === cat ?
+                  itemCategoria.value === cat ?
                   itemCategoria.active = true
                 :
                   itemCategoria.active = false
@@ -31,7 +31,7 @@ export default function Filtros( props){
     const renderItem = data => (
       <Text 
         style={ data.item.active === true ? styles.listItemActive : styles.listItem } 
-        onPress={()=>seleccionarCat(data.item.id)}
+        onPress={()=>seleccionarCat(data.item.value)}
         >
           {data.item.value}
       </Text>
