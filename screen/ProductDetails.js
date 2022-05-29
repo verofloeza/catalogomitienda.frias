@@ -12,8 +12,9 @@ import Colors from '../constantes/Colors';
 import { Ionicons } from '@expo/vector-icons';
 import { useSelector } from 'react-redux';
 
-export default function ProductDetails() {
+export default function ProductDetails({route}) {
     const item = useSelector(state => state.productos.selected);
+    //const item = route.params.producto;
 
     return (
         <ScrollView style={styles.containerGrid}>

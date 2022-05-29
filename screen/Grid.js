@@ -32,7 +32,7 @@ const Grid = ( {navigation}) => {
                 nombreCategoria = categoria.value
             }
         })
-        navigation.navigate('Details', { categoria: nombreCategoria });
+        navigation.navigate('Details', { categoria: nombreCategoria, producto: item });
     }
     const renderProductos = ( {item}) =>(
         <Card>

@@ -99,7 +99,6 @@ const ImageSelector = (props) => {
         const storageRef = ref(storage, `/${nombre}`);
           
         getDownloadURL(storageRef).then((url) => {
-                console.log(url);
                 setPickerURI(url)
                 props.onImage(url);
             })

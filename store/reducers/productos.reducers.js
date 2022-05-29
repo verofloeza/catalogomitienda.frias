@@ -1,11 +1,8 @@
 import { FILTERED_PRODUCTOS, SELECT_PRODUCTOS } from "../actions/productos.action";
 
-import { PRODUCTOS } from "../../data/PRODUCTOS";
-
 const initialState = {
-    productos: PRODUCTOS,
     filteredProductos: [],
-    selected: null
+    selected: []
 }
 
 const ProductosReducer = (state = initialState, action) => {

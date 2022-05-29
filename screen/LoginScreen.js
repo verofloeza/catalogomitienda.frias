@@ -9,6 +9,7 @@ import {
 import React, { useCallback, useState } from 'react';
 
 import Registro from '../componentes/Registro';
+import { selectVendedor } from '../store/actions/perfil.action';
 import { signin } from '../store/actions/login.action';
 import {styles} from '../style';
 import { useDispatch } from 'react-redux';
@@ -26,6 +27,7 @@ function LoginScreen() {
 
     const loguear = () => {
         dispatch(signin(email, contrasena));
+        dispatch(selectVendedor(email));
     }
 
      const tomarEmail = (textoEmail) => {

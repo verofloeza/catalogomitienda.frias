@@ -16,17 +16,6 @@ export const LIST_PRODUCTOS = 'LIST_PRODUCTOS';
 
 export const addPlace = (title, marca, precio, descripcion, categoria, image, user) => {
     return async dispatch => {
-        const fileName = image.split('/').pop();
-        const Path = FileSystem.documentDirectory + fileName; 
-        try {
-            await FileSystem.moveAsync({
-                from: image,
-                to: Path,
-            })
-        } catch (err) {
-            console.log(err);
-            throw err;
-        }
 
         const response2 = await fetch(`${URL_DB_PRODUCTOS}.json`, {
             method: 'POST',
@@ -39,13 +28,13 @@ export const addPlace = (title, marca, precio, descripcion, categoria, image, us
                 precio:precio,
                 descripcion:descripcion,
                 categoria: categoria,
-                image: Path,
+                image: image,
                 usuario: user
             })
         })
         await response2.json()
 
-        dispatch({type: ADD_PLACE, payload: {title: title, marca: marca, precio:precio, descripcion:descripcion, categoria: categoria, image: Path, usuario: user}});
+        dispatch({type: ADD_PLACE, payload: {title: title, marca: marca, precio:precio, descripcion:descripcion, categoria: categoria, image: image, usuario: user}});
     }
 
     

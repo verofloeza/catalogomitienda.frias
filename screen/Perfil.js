@@ -14,12 +14,12 @@ import {styles} from '../style';
 
 const Perfil = ({navigation}) => {
   const dispatch = useDispatch();
+  const items = useSelector(state => state.vendedores.vendedor);
   const [ nombre, setNombre] = useState('');
   const [ image, setImage ] = useState('');
   const [ empresa, setEmpresa] = useState('');
   const [ whatsapp, setWhatsapp ] = useState(0);
-  const user = useSelector(state => state.auth.user);
-  const items = useSelector(state => state.vendedores.vendedor[0]);
+  
 
   const handlerNombre = text => setNombre(text);
   const handlerEmpresa = text => setEmpresa(text);
@@ -27,21 +27,23 @@ const Perfil = ({navigation}) => {
   const handlerImageChange = img => setImage(img);
   
    const handlerSave = () => {
-     dispatch(updatePerfil(nombre, empresa, whatsapp, image, items.id));
+     dispatch(updatePerfil(nombre, empresa, whatsapp, image, items[0].id));
  }
-
- useEffect(()=>{
-  const unsubscribe = navigation.addListener('focus', () => {        
-    dispatch(selectVendedor(user));
-    
-    // setNombre(items.nombre)
-    //   setEmpresa(items.empresa)
-    //   setWhatsapp(items.whastapp)
-    //   setImage(items.image)
-  });  
-  return unsubscribe;       
+  const cargarVendedor = () =>{
+     setNombre(items[0].nombre)
+     setEmpresa(items[0].empresa)
+     setWhatsapp(items[0].whastapp)
+     setImage(items[0].image)
+  }
   
-}, []);
+  useEffect(()=>{
+   const unsubscribe = navigation.addListener('focus', () => {        
+     cargarVendedor()
+   });  
+   return unsubscribe;       
+  
+ }, []);
+
   return (
         <ScrollView>
           <View style={styles.container}>
@@ -50,7 +52,7 @@ const Perfil = ({navigation}) => {
               <TextInput 
                     id='nombre'
                     title='Nombre' 
-                    //placeholder={nombre}
+                    placeholder={items[0].nombre}
                     style={[styles.input, styles.inputLabel]}
                     onChangeText={handlerNombre}
                 />
@@ -60,7 +62,7 @@ const Perfil = ({navigation}) => {
               <TextInput 
                     id='empresa'
                     title='Empresa' 
-                    //placeholder={empresa}
+                    placeholder={items[0].empresa}
                     style={[styles.input, styles.inputLabel]}
                     onChangeText={handlerEmpresa}
                 />
@@ -70,14 +72,14 @@ const Perfil = ({navigation}) => {
               <TextInput 
                     id='whatsapp'
                     title='Whatsapp' 
-                    //placeholder={whatsapp}
+                    placeholder={items[0].whastapp}
                     style={[styles.input, styles.inputLabel]}
                     onChangeText={handlerWhatsapp}
                 />
             </View>
             <View style={styles.filas}>
               <Text style={styles.label}>Logo</Text>
-              <ImageSelector onImage={handlerImageChange} nombre={nombre} tipo='perfil' image=''/>
+              <ImageSelector onImage={handlerImageChange} nombre={nombre} tipo='perfil' image={items[0].image}/>
             </View>
             <View style={styles.filas}>
               <TouchableOpacity onPress={handlerSave}>

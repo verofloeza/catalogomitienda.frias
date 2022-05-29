@@ -31,8 +31,8 @@ export const signup = (nombre, whastapp, empresa, email, password) => {
         const data = await response.json()
         dispatch({ 
             type: SIGNUP,
-            token: data.idToken,
-            user: data.email
+            user: data.email,
+            vendedor: data
         })
 
         const response2 = await fetch(`${URL_DATABASE}.json`, {
@@ -44,9 +44,7 @@ export const signup = (nombre, whastapp, empresa, email, password) => {
                 nombre: nombre,
                 empresa: empresa,
                 whastapp: whastapp,
-                email: email, 
-                constrasena: password, 
-                token:data.idToken
+                email: email
             })
         })
         await response2.json()  
@@ -80,7 +78,8 @@ export const signin = (email, password) => {
         dispatch({ 
             type: SIGNIN,
             token: data.idToken,
-            user: data.email
+            user: data.email,
+            vendedor: data
         })
     }
 }

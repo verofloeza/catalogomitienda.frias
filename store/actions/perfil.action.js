@@ -15,18 +15,7 @@ export const SELECT_VENDEDOR = 'SELECT_VENDEDOR';
 
 export const updatePerfil = (nombre, empresa, whastapp, image, id) => {
     return async dispatch => {
-         const fileName = image.split('/').pop();
-         const Path = FileSystem.documentDirectory + fileName; 
-         try {
-            await FileSystem.moveAsync({
-                 from: image,
-                 to: Path,
-             })
-         } catch (err) {
-             console.log(err);
-             throw err;
-         }
-        
+
         const response2 = await fetch(`${URL_DATABASE+'/'+id}.json`, {
             method: 'PATCH',
             headers: { 
@@ -36,7 +25,7 @@ export const updatePerfil = (nombre, empresa, whastapp, image, id) => {
                 nombre: nombre, 
                 empresa: empresa, 
                 whastapp: whastapp,
-                image: Path
+                image: image
             })
         })
         await response2.json()

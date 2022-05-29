@@ -136,7 +136,9 @@ export const styles = StyleSheet.create({
     fotoProducto:{
         width: '100%',
         height: 200,
-        borderRadius: 10
+        borderRadius: 10,
+        paddingLeft: 10,
+        paddingRight: 10
     },
     title:{
         fontSize:22,
