@@ -1,8 +1,8 @@
 import Colors from '../../constantes/Colors';
+import EditProductos from '../../screen/EditProductos';
 import { Ionicons } from '@expo/vector-icons'
 import NuevoProducto from '../../screen/NuevoProducto';
 import { Platform } from 'react-native-web';
-import ProductDetails from '../../screen/ProductDetails';
 import ProductosScreen from '../../screen/Productos';
 import React from 'react';
 import {
@@ -46,9 +46,9 @@ const ProductosNavigator =  ({navigation}) => {
                 options={{title: 'Nuevo Producto'}}
             />
             <Stack.Screen 
-                name='Detalles' 
-                component={ProductDetails}
-                options={ ({route}) => ({title: route.params.categoria})}
+                name='EditarProducto' 
+                component={EditProductos}
+                options={{title: 'Editar Producto'}}
             />
         </Stack.Navigator>
     )

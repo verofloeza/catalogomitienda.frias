@@ -6,16 +6,16 @@ import {
   View
 } from 'react-native';
 import React, { useEffect } from 'react';
+import { deleteProducto, selectProductos, selectProductosVendedor } from '../store/actions/productos.action';
 import { useDispatch, useSelector } from 'react-redux';
 
+import { AntDesign } from '@expo/vector-icons';
 import Card from '../componentes/Card';
-import { selectProductos } from '../store/actions/productos.action';
-import { selectProductosVendedor } from '../store/actions/places.action';
 import {styles} from '../style';
 
 function ProductosScreen({navigation}) {
   const dispatch = useDispatch();
-  const items = useSelector(state => state.productosVendedor.productosVendedor);
+  const items = useSelector(state => state.productos.productosVendedor);
   const categorias = useSelector(state => state.categorias.listCategorias);
   const user = useSelector(state => state.auth.user);
 
@@ -27,9 +27,11 @@ function ProductosScreen({navigation}) {
              nombreCategoria = categoria.value
          }
      })
-     navigation.navigate('Details', { categoria: nombreCategoria });
-    //console.log(item)
+     navigation.navigate('EditarProducto', { categoria: nombreCategoria, producto: item });
 }
+  const handlerDelete = (id) => {
+    dispatch(deleteProducto(id, user));
+  }
 
   useEffect(()=>{
          const unsubscribe = navigation.addListener('focus', () => {        
@@ -41,6 +43,9 @@ function ProductosScreen({navigation}) {
 
     const renderProductos = ( {item}) =>(
         <Card>
+          <TouchableOpacity onPress={()=>handlerDelete(item.id)}>
+            <AntDesign name="delete" size={18} color="red" style={{ padding:10}}/>
+          </TouchableOpacity>
           <TouchableOpacity onPress={()=>handlerDetalles(item)}>
                 <Image 
                     source={{isStatic:true, uri: item.image,}}
@@ -48,7 +53,8 @@ function ProductosScreen({navigation}) {
                 />
                 <Text style={styles.title}>{item.title}</Text>
                 <Text style={styles.marca}>${item.precio}</Text>
-            </TouchableOpacity>
+          </TouchableOpacity>
+          
         </Card>
     )
   return (

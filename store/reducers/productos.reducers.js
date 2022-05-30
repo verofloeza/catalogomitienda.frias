@@ -1,6 +1,7 @@
-import { FILTERED_PRODUCTOS, SELECT_PRODUCTOS } from "../actions/productos.action";
+import { EDIT_PRODUCTOS, FILTERED_PRODUCTOS, SELECT_PRODUCTOS, SELECT_PRODUCTOS_VENDEDOR } from "../actions/productos.action";
 
 const initialState = {
+    productosVendedor: [],
     filteredProductos: [],
     selected: []
 }
@@ -16,6 +17,16 @@ const ProductosReducer = (state = initialState, action) => {
             return {
                 ...state,
                 filteredProductos: action.payload.filter( productos => productos.categoria === action.categoriaID )
+            }
+        case EDIT_PRODUCTOS:
+            return {
+                ...state,
+                selected: action.payload
+            }
+        case SELECT_PRODUCTOS_VENDEDOR:
+            return {
+                ...state,
+                productosVendedor: action.payload.filter( item => item.usuario === action.user)
             }
         default: 
             return state;

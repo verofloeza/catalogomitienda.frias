@@ -187,5 +187,58 @@ export const styles = StyleSheet.create({
         width: '100%',
         height: '100%',
         borderRadius: 20,
-    }
+    },
+    //MODAL
+    modalCenter:{
+        flex:1,
+        alignItems: "center",
+        justifyContent: "center",
+        backgroundColor: Colors.primaryOpacity
+      },
+      modalView:{
+        backgroundColor: Colors.white,
+        borderWidth: 2,
+        borderRadius: 20,
+        borderColor: Colors.accent,
+        width:300,
+        height:200,
+        alignItems: "center",
+        justifyContent: "center"
+      },
+      modalTitle:{
+        color: Colors.primary,
+        fontSize: 18,
+        width: "100%",
+        fontWeight: "bold",
+        paddingLeft:10
+      },
+      contenedorTitulo:{
+        width: 270,
+        flexDirection: "row",
+        marginTop: 0,
+        paddingBottom:20
+    },
+    textoTitulo:{
+      color: Colors.primary,
+      fontWeight: 'bold',
+      fontSize: 32,
+      marginTop:0,
+      right:30
+    },
+    contenedorButton:{
+        alignItems: 'center',
+        justifyContent: 'center',
+      },
+      buttonFoto: {
+        backgroundColor: Colors.accent,
+        alignItems: 'center',
+        justifyContent: 'center',
+        paddingVertical: 8,
+        paddingHorizontal: 20,
+        borderRadius: 10,
+        elevation: 3,
+      },
+      textFoto:{
+          color: Colors.white
+      }
 });

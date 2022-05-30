@@ -3,8 +3,9 @@ import * as firebase from "firebase/app";
 
 import { ActivityIndicator, Alert, Image, Text, TouchableOpacity, View } from 'react-native';
 import React, { useState } from 'react';
-import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
+import { deleteObject, getDownloadURL, getStorage, list, ref, uploadBytes } from "firebase/storage";
 
+import ModalImage from './Modal';
 import { firebaseConfig } from '../constantes/Firebase';
 import {styles} from '../style';
 
@@ -14,7 +15,7 @@ const ImageSelector = (props) => {
     const { nombre, tipo, image } = props;
     const storage = getStorage();
     const [ pickerURI, setPickerURI ] = useState(image);
-    const [uploading, setUploading] = useState(false);
+    const [ modal, setModal] = useState(false);
 
     const verifyPermissions = async () => {
        const { status } = await ImagePicker.requestCameraPermissionsAsync();
@@ -43,25 +44,13 @@ const ImageSelector = (props) => {
         return true;
      }
     const handlerTakeImage = async () => {
+        closeModal()
         const isCameraOK = await verifyPermissions();
         if(!isCameraOK) return;
 
         const image = await ImagePicker.launchCameraAsync({
             allowsEditing: true,
             aspect: tipo === 'perfil' ? [4,3] : [9,16],
-            quality: 0.8
-        })
-
-        setPickerURI(image.uri);
-        props.onImage(image.uri);
-    }
-    const handlerTakeGallery = async () => {
-        const isCameraOK = await verifyPermissionsGallery();
-        if(!isCameraOK) return;
-
-        const image = await ImagePicker.launchImageLibraryAsync({
-            allowsEditing: true,
-            aspect: [9,16],
             quality: 0.8
         })
 
@@ -75,77 +64,118 @@ const ImageSelector = (props) => {
               type: `image/${fileType}`,
               uri: image.uri,
             });
+            
+            const blob = await new Promise((resolve, reject) => {
+                const xhr = new XMLHttpRequest();
+                xhr.onload = function() {
+                  resolve(xhr.response);
+                };
+                xhr.onerror = function() {
+                  reject(new TypeError('Network request failed'));
+                };
+                xhr.responseType = 'blob';
+                xhr.open('GET', image.uri, true);
+                xhr.send(null);
+              });
+               
+              
+    
+            const storageRef = ref(storage, `/${nombre}-${new Date().toISOString()}.jpg`);  
+            
+    
+             uploadBytes(storageRef, blob).then((url) => {
+                 console.log('Uploaded a blob or file!');
+                 getDownloadURL(storageRef).then((url) => {
+                    setPickerURI(url)
+                    props.onImage(url);
+                    
+                })
+               });
+    
+            blob.close();
         }
-
-        setPickerURI(image.uri);
-        props.onImage(image.uri);
     }
-    const uploadImage = async() => {
-        
-        const blob = await new Promise((resolve, reject) => {
-            const xhr = new XMLHttpRequest();
-            xhr.onload = function() {
-              resolve(xhr.response);
-            };
-            xhr.onerror = function() {
-              reject(new TypeError('Network request failed'));
-            };
-            xhr.responseType = 'blob';
-            xhr.open('GET', pickerURI, true);
-            xhr.send(null);
-          });
-          
+    const handlerTakeGallery = async () => {
+        closeModal()
+        const isCameraOK = await verifyPermissionsGallery();
+        if(!isCameraOK) return;
 
-        const storageRef = ref(storage, `/${nombre}`);
-          
-        getDownloadURL(storageRef).then((url) => {
-                setPickerURI(url)
-                props.onImage(url);
-            })
+        const image = await ImagePicker.launchImageLibraryAsync({
+            allowsEditing: true,
+            aspect: tipo === 'perfil' ? [4,3] : [9,16],
+            quality: 0.8
+        })
 
-         uploadBytes(storageRef, blob).then((url) => {
+        if (!image.cancelled) {
+            const data = new FormData();
+            let uriParts = image.uri.split('.');
+            let fileType = uriParts[uriParts.length - 1];
+    
+            data.append('images', {
+              name: `photo.${fileType}`,
+              type: `image/${fileType}`,
+              uri: image.uri,
+            });
             
-             console.log('Uploaded a blob or file!');
+            const blob = await new Promise((resolve, reject) => {
+                const xhr = new XMLHttpRequest();
+                xhr.onload = function() {
+                  resolve(xhr.response);
+                };
+                xhr.onerror = function() {
+                  reject(new TypeError('Network request failed'));
+                };
+                xhr.responseType = 'blob';
+                xhr.open('GET', image.uri, true);
+                xhr.send(null);
+              });
+               
+              
+    
+            const storageRef = ref(storage, `/${nombre}-${new Date().toISOString()}.jpg`);  
             
-           });
-
-        blob.close();
-
-       
-
-      
+    
+             uploadBytes(storageRef, blob).then((url) => {
+                 console.log('Uploaded a blob or file!');
+                 getDownloadURL(storageRef).then((url) => {
+                    setPickerURI(url)
+                    props.onImage(url);
+                    
+                })
+               });
+    
+            blob.close();
+        }
+            
         
+    }
+    
+    const handlerModal = () => {
+        setModal(!modal);
+    }
+    const closeModal = () => {
+        setModal(!modal);
       }
     return (
         <View style={styles.container}>
-            <View style={styles.preview}>
-                {!pickerURI 
-                    ? (<Text>No hay imagen seleccionada </Text>)
-                    : (<Image 
-                        style={styles.image}
-                        source={{uri: pickerURI}}/>)
-                }
-            </View>
-            <TouchableOpacity onPress={handlerTakeImage}>
-                    <View style={[styles.butonsCarrito, styles.accentB]}>
-                        <Text style={styles.textButton}>Tomar Foto</Text>
-                    </View>         
-              </TouchableOpacity>
-              <TouchableOpacity onPress={handlerTakeGallery}>
-                    <View style={[styles.butonsCarrito, styles.primaryB]}>
-                        <Text style={styles.textButton}>Abrir Galeria</Text>
-                    </View>         
-              </TouchableOpacity> 
-              {
-                  !uploading ?
-                  <TouchableOpacity onPress={uploadImage}>
-                    <View style={[styles.butonsCarrito, styles.accentB]}>
-                        <Text style={styles.textButton}>Guardar Foto</Text>
-                    </View>         
-              </TouchableOpacity> :
-                    <ActivityIndicator size='large' color='#000'/>
-              }
-              
+            <TouchableOpacity onPress={handlerModal} style={{width:'100%'}}>
+                <View style={styles.preview}>
+                    {!pickerURI 
+                        ? (<Text>No hay imagen seleccionada </Text>)
+                        : (<Image 
+                            style={styles.image}
+                            source={{uri: pickerURI}}
+                            />)
+                    }
+                </View>
+            </TouchableOpacity>    
+            
+             <ModalImage
+                onCamara={handlerTakeImage} 
+                onGaleria={handlerTakeGallery}
+                visible={modal} 
+                onCancel={closeModal}
+            /> 
         </View>
     )
 }
