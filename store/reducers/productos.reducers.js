@@ -1,4 +1,6 @@
-import { EDIT_PRODUCTOS, FILTERED_PRODUCTOS, SELECT_PRODUCTOS, SELECT_PRODUCTOS_VENDEDOR } from "../actions/productos.action";
+import { ADD_PRODUCTO, EDIT_PRODUCTOS, FILTERED_PRODUCTOS, SELECT_PRODUCTOS, SELECT_PRODUCTOS_VENDEDOR } from "../actions/productos.action";
+
+import Place from '../../models/Place';
 
 const initialState = {
     productosVendedor: [],
@@ -27,6 +29,12 @@ const ProductosReducer = (state = initialState, action) => {
             return {
                 ...state,
                 productosVendedor: action.payload.filter( item => item.usuario === action.user)
+            }
+        case ADD_PRODUCTO:
+            const newPlace = new Place(Date.now(), action.payload.title, action.payload.marca, action.payload.precio,action.payload.descripcion, action.payload.categoria, action.payload.image, action.payload.usuario);
+            return {
+                ...state,
+                productosVendedor: state.productosVendedor.concat(newPlace)
             }
         default: 
             return state;

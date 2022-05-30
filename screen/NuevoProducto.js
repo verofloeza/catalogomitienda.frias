@@ -10,7 +10,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { CheckBox } from 'react-native-elements'
 import ImageSelector from '../componentes/ImageSelector';
-import { addPlace } from '../store/actions/places.action';
+import { addProducto } from '../store/actions/productos.action';
 import {styles} from '../style';
 
 const NuevoProducto = ({navigation}) => {
@@ -35,7 +35,7 @@ const NuevoProducto = ({navigation}) => {
   const handleOnChange = cat => setSelectCategoria(cat);
   
    const handlerSave = () => {
-     dispatch(addPlace(title, marca, precio, descripcion, selectCategoria, image, user));
+     dispatch(addProducto(title, marca, precio, descripcion, selectCategoria, image, user));
      navigation.navigate('Productos');
  }
 

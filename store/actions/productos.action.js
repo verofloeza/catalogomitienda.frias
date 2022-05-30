@@ -1,8 +1,8 @@
 export const SELECT_PRODUCTOS = 'SELECT_PRODUCTOS';
 export const FILTERED_PRODUCTOS = 'FILTERED_PRODUCTOS';
 export const EDIT_PRODUCTOS = 'EDIT_PRODUCTOS';
-export const DELETE_PRODUCTO = 'DELETE_PRODUCTO';
 export const SELECT_PRODUCTOS_VENDEDOR = 'SELECT_PRODUCTOS_VENDEDOR';
+export const ADD_PRODUCTO = 'ADD_PRODUCTO';
 
 import { URL_DB_PRODUCTOS } from '../../constantes/DataBase';
 
@@ -117,4 +117,29 @@ export const selectProductosVendedor = (user) => {
             console.log(err.message)
         }
     }
+}
+export const addProducto = (title, marca, precio, descripcion, categoria, image, user) => {
+    return async dispatch => {
+
+        const response2 = await fetch(`${URL_DB_PRODUCTOS}.json`, {
+            method: 'POST',
+            headers: { 
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ 
+                title: title, 
+                marca: marca, 
+                precio:precio,
+                descripcion:descripcion,
+                categoria: categoria,
+                image: image,
+                usuario: user
+            })
+        })
+        await response2.json()
+
+        dispatch({type: ADD_PRODUCTO, payload: {title: title, marca: marca, precio:precio, descripcion:descripcion, categoria: categoria, image: image, usuario: user}});
+    }
+
+    
 }
