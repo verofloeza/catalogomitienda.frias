@@ -188,6 +188,25 @@ export const styles = StyleSheet.create({
         height: '100%',
         borderRadius: 20,
     },
+    filaHorizontal: {
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    listaHorizontal:{
+        flex: 1,
+        width: '100%',
+        display: 'flex',
+        alignItems: 'center'
+    },
+    fotoPerfil:{
+        width: 170,
+        height: 200,
+        borderRadius: 30,
+        paddingLeft: 30,
+        paddingRight: 30
+    },
     //MODAL
     modalCenter:{
         flex:1,

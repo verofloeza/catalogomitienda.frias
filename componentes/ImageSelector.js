@@ -1,9 +1,9 @@
 import * as ImagePicker from 'expo-image-picker';
 import * as firebase from "firebase/app";
 
-import { ActivityIndicator, Alert, Image, Text, TouchableOpacity, View } from 'react-native';
+import { Alert, Image, Text, TouchableOpacity, View } from 'react-native';
 import React, { useState } from 'react';
-import { deleteObject, getDownloadURL, getStorage, list, ref, uploadBytes } from "firebase/storage";
+import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
 
 import ModalImage from './Modal';
 import { firebaseConfig } from '../constantes/Firebase';
@@ -50,7 +50,7 @@ const ImageSelector = (props) => {
 
         const image = await ImagePicker.launchCameraAsync({
             allowsEditing: true,
-            aspect: tipo === 'perfil' ? [4,3] : [9,16],
+            aspect: [3,4],
             quality: 0.8
         })
 
@@ -102,7 +102,7 @@ const ImageSelector = (props) => {
 
         const image = await ImagePicker.launchImageLibraryAsync({
             allowsEditing: true,
-            aspect: tipo === 'perfil' ? [4,3] : [9,16],
+            aspect: [3,4],
             quality: 0.8
         })
 

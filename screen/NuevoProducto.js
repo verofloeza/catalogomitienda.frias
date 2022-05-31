@@ -64,7 +64,7 @@ const NuevoProducto = ({navigation}) => {
                 />
             </View>
             <View style={styles.filas}>
-              <Text style={styles.label}>Precio</Text>
+              <Text style={styles.label}>Precio $</Text>
               <TextInput 
                     id='precio'
                     title='Precio' 

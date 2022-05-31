@@ -3,7 +3,7 @@ import { SELECT_CATEGORY } from "../actions/categoria.action";
 
 const initialState ={
     listCategorias: CATEGORIAS,
-    selected: 'Mujer'
+    selected: 'Accesorios'
 }
 
 const CategoriaReducers = ( state = initialState, action) => {
@@ -13,7 +13,7 @@ const CategoriaReducers = ( state = initialState, action) => {
             if(indexCategoria === -1) {return state};
             return {...state, selected: state.listCategorias[indexCategoria]};
         default:
-            return {...state, selected: 'Mujer'};
+            return {...state, selected: 'Accesorios'};
             //return state;
     }
 

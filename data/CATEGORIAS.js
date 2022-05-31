@@ -1,22 +1,27 @@
 export const CATEGORIAS = [
     {
         id:1, 
-        value:'Mujer', 
+        value:'Accesorios', 
         active:true
     },
     {
         id:2, 
-        value:'Hombre', 
+        value:'Juguetes', 
         active:false
     },
     {
         id:3, 
-        value:'Niño', 
+        value:'Lamparas', 
         active:false
     },
     {
         id:4, 
-        value:'Mas', 
+        value:'Muebles', 
+        active:false
+    },
+    {
+        id:5, 
+        value:'Relojes', 
         active:false
     },
 ]

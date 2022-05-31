@@ -1,11 +1,12 @@
-import React, {useEffect, useState} from 'react';
 import {
-    ScrollView,
-    Text,
-    TextInput,
-    TouchableOpacity,
-    View
+  Alert,
+  ScrollView,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View
 } from 'react-native';
+import React, {useEffect, useState} from 'react';
 import { selectVendedor, updatePerfil } from '../store/actions/perfil.action';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -19,25 +20,31 @@ const Perfil = ({navigation}) => {
   const [ image, setImage ] = useState('');
   const [ empresa, setEmpresa] = useState('');
   const [ whatsapp, setWhatsapp ] = useState(0);
-  
+  const [ direccion, setDireccion] = useState('');
+  const user = useSelector(state => state.auth.user);
 
   const handlerNombre = text => setNombre(text);
   const handlerEmpresa = text => setEmpresa(text);
   const handlerWhatsapp = text => setWhatsapp(text);
+  const handlerDireccion = text => setDireccion(text);
   const handlerImageChange = img => setImage(img);
   
    const handlerSave = () => {
-     dispatch(updatePerfil(nombre, empresa, whatsapp, image, items[0].id));
+     dispatch(updatePerfil(nombre, empresa, whatsapp, direccion, image, items[0].id));
+     Alert.alert('Perfil actualizado correctamente')
+
  }
   const cargarVendedor = () =>{
      setNombre(items[0].nombre)
      setEmpresa(items[0].empresa)
      setWhatsapp(items[0].whastapp)
+     setDireccion(items[0].direccion)
      setImage(items[0].image)
   }
   
   useEffect(()=>{
-   const unsubscribe = navigation.addListener('focus', () => {        
+   const unsubscribe = navigation.addListener('focus', () => {   
+     dispatch(selectVendedor(user))     
      cargarVendedor()
    });  
    return unsubscribe;       
@@ -75,6 +82,16 @@ const Perfil = ({navigation}) => {
                     placeholder={items[0].whastapp}
                     style={[styles.input, styles.inputLabel]}
                     onChangeText={handlerWhatsapp}
+                />
+            </View>
+            <View style={styles.filas}>
+              <Text style={styles.label}>Dirección</Text>
+              <TextInput 
+                    id='direccion'
+                    title='Direccion' 
+                    placeholder={items[0].direccion}
+                    style={[styles.input, styles.inputLabel]}
+                    onChangeText={handlerDireccion}
                 />
             </View>
             <View style={styles.filas}>

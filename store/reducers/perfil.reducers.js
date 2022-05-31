@@ -1,7 +1,8 @@
-import { SELECT_VENDEDOR, UPDATE_PERFIL } from '../actions/perfil.action';
+import { LIST_VENDEDOR, SELECT_VENDEDOR, UPDATE_PERFIL } from '../actions/perfil.action';
 
 const initialState = {
-    vendedor: []
+    vendedor: [],
+    listVendedores: []
 }
 
 const PerfilReducer = (state = initialState, action) => {    
@@ -14,7 +15,12 @@ const PerfilReducer = (state = initialState, action) => {
         case UPDATE_PERFIL:
             return {
                 ...state, 
-                vendedor: action.vendedor
+                vendedor: action.payload
+            }
+        case LIST_VENDEDOR:
+            return {
+                ...state, 
+                listVendedores: action.payload
             }
         default:
             return state

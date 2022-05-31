@@ -5,14 +5,9 @@
     "version": "1.0.0",
     "platforms": ["ios", "android"],
     "orientation": "portrait",
-    "icon": "./assets/logo-mitienda-96x.png",
+    "icon": "./assets/icon-app.png",
     "splash": {
-      "ldpi": "./assets/logo-mitienda-300px.png",
-        "mdpi": "./assets/logo-mitienda-300px.png",
-        "hdpi": "./assets/logo-mitienda-300px.png",
-        "xhdpi": "./assets/logo-mitienda-300px.png",
-        "xxhdpi": "./assets/logo-mitienda-300px.png",
-        "xxxhdpi": "./assets/logo-mitienda-300px.png",
+      "image": "./assets/splash-mitienda.png",
       "backgroundColor": "#ffffff"
     },
     "updates": {

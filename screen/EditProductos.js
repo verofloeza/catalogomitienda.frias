@@ -48,7 +48,7 @@ const EditProducto = ({navigation, route}) => {
               <TextInput 
                     id='titulo'
                     title='Título' 
-                    placeholder={title} 
+                    placeholder={item.title} 
                     style={[styles.input, styles.inputLabel]}
                     onChangeText={handlerTitle}
                 />
@@ -58,7 +58,7 @@ const EditProducto = ({navigation, route}) => {
               <TextInput 
                     id='marca'
                     title='Marca' 
-                    placeholder={marca} 
+                    placeholder={item.marca} 
                     style={[styles.input, styles.inputLabel]}
                     onChangeText={handlerMarca}
                 />
@@ -68,7 +68,7 @@ const EditProducto = ({navigation, route}) => {
               <TextInput 
                     id='precio'
                     title='Precio $' 
-                    placeholder={precio}
+                    placeholder={item.precio}
                     style={[styles.input, styles.inputLabel]}
                     onChangeText={handlerPrecio}
                     blurOnSubmit
@@ -98,7 +98,7 @@ const EditProducto = ({navigation, route}) => {
               <TextInput 
                     id='descripcion'
                     title='Descripción' 
-                    placeholder={descripcion}
+                    placeholder={item.descripcion}
                     style={[styles.input, styles.inputLabel]}
                     onChangeText={handlerDescripcion}
                 />

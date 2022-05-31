@@ -6,6 +6,7 @@ import PerfilNavigator from '../perfil';
 import ProductosNavigator from '../productos';
 import React from 'react';
 import ShopNavigator from '../shop';
+import VendedorNavigator from '../vendedor';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 const BottomTabs = createBottomTabNavigator();
@@ -28,6 +29,16 @@ const TabLoginNavigator = () => {
                         <View style={styles.item}>
                             <Ionicons name="md-home" size={24} color={color} />
                             <Text style={{color: color}}>Tienda</Text>
+                        </View>
+                    )
+                }}
+            />
+                <BottomTabs.Screen name='VendedorTab' component={VendedorNavigator}
+                options={{
+                    tabBarIcon: ({color, focused}) => (
+                        <View style={styles.item}>
+                            <Ionicons name="business-sharp" size={24} color={color}/>
+                            <Text style={{color: color}}>Tiendas</Text>
                         </View>
                     )
                 }}

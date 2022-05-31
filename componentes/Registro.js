@@ -8,6 +8,7 @@ import {
 } from 'react-native';
 import React, { useState } from 'react';
 
+import { selectVendedor } from '../store/actions/perfil.action';
 import { signup } from '../store/actions/login.action';
 import {styles} from '../style';
 import { useDispatch } from 'react-redux';

@@ -5,6 +5,7 @@ import { Ionicons } from '@expo/vector-icons';
 import LoginNavigator from '../login';
 import React from 'react';
 import ShopNavigator from '../shop';
+import VendedorNavigator from '../vendedor';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 const BottomTabs = createBottomTabNavigator();
@@ -26,7 +27,17 @@ const TabNavigator = () => {
                     tabBarIcon: ({color, focused}) => (
                         <View style={styles.item}>
                             <Ionicons name="md-home" size={24} color={color} />
-                            <Text style={{color: color}}>Tienda</Text>
+                            <Text style={{color: color}}>Catálogo</Text>
+                        </View>
+                    )
+                }}
+            />
+            <BottomTabs.Screen name='VendedorTab' component={VendedorNavigator}
+                options={{
+                    tabBarIcon: ({color, focused}) => (
+                        <View style={styles.item}>
+                            <Ionicons name="business-sharp" size={24} color={color}/>
+                            <Text style={{color: color}}>Tiendas</Text>
                         </View>
                     )
                 }}

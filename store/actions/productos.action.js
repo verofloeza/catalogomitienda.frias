@@ -118,6 +118,7 @@ export const selectProductosVendedor = (user) => {
         }
     }
 }
+
 export const addProducto = (title, marca, precio, descripcion, categoria, image, user) => {
     return async dispatch => {
 

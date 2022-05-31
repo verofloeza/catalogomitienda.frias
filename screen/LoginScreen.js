@@ -6,7 +6,7 @@ import {
     TouchableOpacity,
     View
 } from 'react-native';
-import React, { useCallback, useState } from 'react';
+import React, { useState } from 'react';
 
 import Registro from '../componentes/Registro';
 import { selectVendedor } from '../store/actions/perfil.action';

@@ -28,7 +28,7 @@ const PerfilNavigator =  () => {
                     name='Home' 
                     component={Perfil}
                     options={{ headerTitle: () => <Image
-                        style={{ width: 150, height: 29 }}
+                        style={{ width: 200, height: 36 }}
                         source={ require('../../assets/logo-horizontal.png')}
                       />
                      }}
