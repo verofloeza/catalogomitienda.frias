@@ -1,10 +1,11 @@
 import * as ImagePicker from 'expo-image-picker';
 import * as firebase from "firebase/app";
 
-import { Alert, Image, Text, TouchableOpacity, View } from 'react-native';
+import { ActivityIndicator, Alert, Image, Text, TouchableOpacity, View, } from 'react-native';
 import React, { useState } from 'react';
 import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
 
+import Colors from '../constantes/Colors';
 import ModalImage from './Modal';
 import { firebaseConfig } from '../constantes/Firebase';
 import {styles} from '../style';
@@ -16,6 +17,14 @@ const ImageSelector = (props) => {
     const storage = getStorage();
     const [ pickerURI, setPickerURI ] = useState(image);
     const [ modal, setModal] = useState(false);
+    const [loading, setLoading] = useState(false);
+
+    const startLoading = () => {
+        setLoading(true);
+        setTimeout(() => {
+          setLoading(false);
+        }, 3000);
+      };
 
     const verifyPermissions = async () => {
        const { status } = await ImagePicker.requestCameraPermissionsAsync();
@@ -69,6 +78,7 @@ const ImageSelector = (props) => {
                 const xhr = new XMLHttpRequest();
                 xhr.onload = function() {
                   resolve(xhr.response);
+                  
                 };
                 xhr.onerror = function() {
                   reject(new TypeError('Network request failed'));
@@ -84,6 +94,7 @@ const ImageSelector = (props) => {
             
     
              uploadBytes(storageRef, blob).then((url) => {
+                  startLoading()
                  console.log('Uploaded a blob or file!');
                  getDownloadURL(storageRef).then((url) => {
                     setPickerURI(url)
@@ -121,6 +132,7 @@ const ImageSelector = (props) => {
                 const xhr = new XMLHttpRequest();
                 xhr.onload = function() {
                   resolve(xhr.response);
+                  
                 };
                 xhr.onerror = function() {
                   reject(new TypeError('Network request failed'));
@@ -131,11 +143,12 @@ const ImageSelector = (props) => {
               });
                
               
-    
+              
             const storageRef = ref(storage, `/${nombre}-${new Date().toISOString()}.jpg`);  
             
     
              uploadBytes(storageRef, blob).then((url) => {
+                  startLoading()
                  console.log('Uploaded a blob or file!');
                  getDownloadURL(storageRef).then((url) => {
                     setPickerURI(url)
@@ -160,13 +173,21 @@ const ImageSelector = (props) => {
         <View style={styles.container}>
             <TouchableOpacity onPress={handlerModal} style={{width:'100%'}}>
                 <View style={styles.preview}>
-                    {!pickerURI 
+                {loading ? (
+          <ActivityIndicator
+            //visibility of Overlay Loading Spinner
+            visible={loading}
+            color={Colors.accent}
+          />
+        ) : (
+                    !pickerURI 
                         ? (<Text>No hay imagen seleccionada </Text>)
                         : (<Image 
                             style={styles.image}
                             source={{uri: pickerURI}}
                             />)
-                    }
+                    
+                    )}
                 </View>
             </TouchableOpacity>    
             
