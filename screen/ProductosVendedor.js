@@ -16,11 +16,12 @@ const ProductosVendedor = ( {navigation, route}) => {
     const dispatch = useDispatch();
     const productosSeleccionados = useSelector(state => state.productos.productosVendedor);
     const vendedor = route.params.vendedor;
+    const categorias = useSelector(state => state.categorias.listCategorias);
 
     useEffect( () => {
-        dispatch(selectProductosVendedor(vendedor));
+        dispatch(selectProductosVendedor(vendedor.email));
+        
       }, [])
-
 
     const handlerDetalles = (item)=>{
         dispatch(selectProductos(item.id));
@@ -30,7 +31,7 @@ const ProductosVendedor = ( {navigation, route}) => {
                 nombreCategoria = categoria.value
             }
         })
-        navigation.navigate('Details', { categoria: nombreCategoria, producto: item });
+        navigation.navigate('Details', { categoria: nombreCategoria, producto: vendedor });
     }
     const renderProductos = ( {item}) =>(
         <Card>
@@ -47,12 +48,13 @@ const ProductosVendedor = ( {navigation, route}) => {
 
     return (
         <View style={styles.containerGrid}>
-            <View style={styles.filtros}>
+            <View style={styles.infoEmpresa}>
+                <Text style={styles.empresa}>{vendedor.empresa}</Text>
                 <Image 
-                        source={{isStatic:true, uri: item.image,}}
-                        style={styles.fotoPerfil} 
+                        source={{isStatic:true, uri: vendedor.image,}}
+                        style={styles.fotoPerfilVend} 
                     /> 
-               <Text style={styles.title}>Empresa</Text>
+               
             </View>
             <View style={styles.containerList}> 
                 <FlatList
@@ -62,7 +64,7 @@ const ProductosVendedor = ( {navigation, route}) => {
                     columnWrapperStyle={styles.lista}
                     renderItem={renderProductos}
                 />
-            </View>
+            </View> 
             
             
         </View>

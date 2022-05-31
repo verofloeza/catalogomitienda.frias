@@ -1,4 +1,5 @@
 import {
+    Alert,
     Image,
     Modal,
     Text,
@@ -8,7 +9,6 @@ import {
 } from 'react-native';
 import React, { useState } from 'react';
 
-import { selectVendedor } from '../store/actions/perfil.action';
 import { signup } from '../store/actions/login.action';
 import {styles} from '../style';
 import { useDispatch } from 'react-redux';
@@ -24,6 +24,8 @@ function Registro(props) {
 
     const subirFire = () =>{
        dispatch(signup(nombre, whastapp, empresa, email, contrasena))
+       Alert.alert('Vendedor ingresado',
+       'Por favor, vuelva al login, ingrese su email y contraseña, para subir sus productos. Exitos!!')
     }
     const tomarNombre = (textoNombre) => setNombre(textoNombre);
     const tomarWhastapp = (textoWhastapp) => setWhastapp(textoWhastapp);

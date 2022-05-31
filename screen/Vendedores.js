@@ -15,10 +15,10 @@ import {styles} from '../style';
 const ListVendedores = ( {navigation}) => {
     const dispatch = useDispatch();
     const listVendedores = useSelector(state => state.vendedores.listVendedores);
+    
 
     const handlerDetalles = (item)=>{
-        //dispatch(selectProductos(item.id));
-        navigation.navigate('Details', { vendedor: item });
+        navigation.navigate('ProductosVendedor', { vendedor: item });
     }
 
     useEffect(()=>{

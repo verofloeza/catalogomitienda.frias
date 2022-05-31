@@ -4,6 +4,7 @@ import {
 } from 'react-native';
 import ListVendedores from '../../screen/Vendedores'
 import { Platform } from 'react-native-web';
+import ProductosVendedor from '../../screen/ProductosVendedor'
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
@@ -33,11 +34,11 @@ const VendedorNavigator =  () => {
                       />
                      }}
                 />
-                {/* <Stack.Screen 
-                    name='Details' 
-                    component={ProductDetails}
-                    options={ ({route}) => ({title: route.params.categoria})}
-                /> */}
+                 <Stack.Screen 
+                    name='ProductosVendedor' 
+                    component={ProductosVendedor}
+                    options={{title: 'Productos del vendedor'}}
+                /> 
             </Stack.Navigator>
     )
 }

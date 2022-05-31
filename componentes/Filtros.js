@@ -44,6 +44,7 @@ export default function Filtros( props){
                     renderItem={renderItem}
                     keyExtractor={ item => item.id }
                     horizontal={true}
+                    showsHorizontalScrollIndicator={false}
                 />
             </View>
 

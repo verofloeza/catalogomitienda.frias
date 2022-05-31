@@ -7,15 +7,23 @@ import {
     TouchableOpacity,
     View
 } from 'react-native';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 import Colors from '../constantes/Colors';
 import { Ionicons } from '@expo/vector-icons';
-import { useSelector } from 'react-redux';
+import { selectVendedor } from '../store/actions/perfil.action';
 
 export default function ProductDetails({route}) {
+    const dispatch = useDispatch();
     const item = useSelector(state => state.productos.selected);
+    const vendedor = useSelector(state => state.vendedores.vendedor);
     //const item = route.params.producto;
 
+    useEffect( () => {
+        dispatch(selectVendedor(item.usuario));
+        
+      }, [])
     return (
         <ScrollView style={styles.containerGrid}>
             <Image 
@@ -30,9 +38,10 @@ export default function ProductDetails({route}) {
                 
             </View>
             <View style={styles.buttons}>
-                <TouchableOpacity onPress={() => { Linking.openURL('http://api.whatsapp.com/send?phone=5491123290534' )}}>
+                <TouchableOpacity onPress={() => { Linking.openURL('http://api.whatsapp.com/send?phone=549'+vendedor[0].whastapp
+ )}}>
                     <View style={styles.butonsCarrito}>
-                        <Ionicons name="md-cart" size={32} color={Colors.white} style={styles.buttonCart}>
+                        <Ionicons name="logo-whatsapp" size={32} color={Colors.white} style={styles.buttonCart}>
                             <Text style={styles.textButton}> Contactar al vendedor</Text>
                         </Ionicons> 
                     </View>

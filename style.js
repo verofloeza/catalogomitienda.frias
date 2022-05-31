@@ -70,7 +70,7 @@ export const styles = StyleSheet.create({
     },
     input:{
         width: '100%',
-        borderBottomWidth:2,
+        borderBottomWidth:1,
         borderBottomColor: Colors.accent,
         padding: 10,
         marginBottom:25,
@@ -109,7 +109,7 @@ export const styles = StyleSheet.create({
     //Grid
     containerGrid:{
         flex:1,
-        backgroundColor: '#f6f6f6',
+        backgroundColor: Colors.backgroundGrey,
         alignItems: 'center',
         justifyContent: 'center',
         width: "100%",
@@ -259,5 +259,25 @@ export const styles = StyleSheet.create({
       },
       textFoto:{
           color: Colors.white
-      }
+      },
+    infoEmpresa:{
+        flex: 1,
+        width: '100%',
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderBottomWidth: 1, 
+        borderBottomColor: Colors.accent 
+    },
+    empresa: {
+        fontSize:26,
+        textAlign: 'center',
+        color: Colors.primary,
+        fontWeight: 'bold',
+        fontFamily: 'MontserratBold'
+    }, 
+    fotoPerfilVend: {
+        width: 70,
+        height: 50,
+        borderRadius: 10,
+    }
 });
